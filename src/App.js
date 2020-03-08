@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React with Eli Aslani
+          Learn React with Eli Aslani from germany
         </a>
       </header>
     </div>
