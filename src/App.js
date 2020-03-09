@@ -13,7 +13,7 @@ class App extends React.Component {
     }
   }
 
-  updateInputValue(evnt){
+  updateInputValue(event){
     this.setState({
       inputValue : event.target.value
     })
@@ -21,17 +21,37 @@ class App extends React.Component {
 
   handleSubmit(event){
     event.preventDefault();
-    return {
-      value : parseInt(this.state.inputValue)
-    }
+    this.setState(()=>{
+      return {
+        value : parseInt(this.state.inputValue)
+      }
+    })
   }
 
   render() {
+
+    var userArray = [];
+    var i;
+
+    for (i=0; i < this.state.value; i++) {
+      userArray.push(
+        <Users key={i}/>
+      )
+    }
+
     return (
       <div>
         <div>
           <input value={this.state.inputValue} onChange={this.updateInputValue}></input>
           <button onClick={this.handleSubmit}>Submit</button>
+        </div>
+        <div>
+          <thead>
+            <th>Avatar</th>
+            <th>User Name:</th>
+            <th>Password:</th>
+          </thead>
+          {userArray}
         </div>
       </div>
     )
