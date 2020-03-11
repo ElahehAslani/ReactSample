@@ -1,59 +1,22 @@
 import React from 'react';
 import Users from './Users';
+import { BrowserRooter as Router, Route, Link } from 'react-router-dom'
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.updateInputValue = this.updateInputValue.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      value : "",
-      inputValue : ""
-    }
-  }
-
-  updateInputValue(event){
-    this.setState({
-      inputValue : event.target.value
-    })
-  }
-
-  handleSubmit(event){
-    event.preventDefault();
-    this.setState(()=>{
-      return {
-        value : parseInt(this.state.inputValue)
-      }
-    })
-  }
-
   render() {
 
-    var userArray = [];
-    var i;
-
-    for (i=0; i < this.state.value; i++) {
-      userArray.push(
-        <Users key={i}/>
-      )
-    }
-
     return (
-      <div>
+      <Router>
         <div>
-          <input value={this.state.inputValue} onChange={this.updateInputValue}></input>
-          <button onClick={this.handleSubmit}>Submit</button>
+          <h1>REACT Router</h1>
+          <div>
+            <Route exact path="/" component={Home}></Route>
+            <Route exact path="/about" component={About}></Route>
+            <Route exact path="/contact" component={Contact}></Route>
+          </div>
         </div>
-        <div>
-          <thead>
-            <th>Avatar</th>
-            <th>User Name:</th>
-            <th>Password:</th>
-          </thead>
-          {userArray}
-        </div>
-      </div>
+      </Router>
     )
   }
 }
